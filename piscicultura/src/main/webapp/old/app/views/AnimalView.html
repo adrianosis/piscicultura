@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="well">
+        <div class="row">
+            <div class="col-sm-2">
+                <span style="font-weight: bold">Microship</span>
+                <br>
+                <span>{{animal.numeroMicroship}}</span>
+            </div>
+            <div class="col-sm-4">
+                <span style="font-weight: bold">Espécie</span>
+                <br>
+                <span>{{animal.especie}}</span>
+            </div>
+            <div class="col-sm-4">
+                <span style="font-weight: bold">Data de Nascimento</span>
+                <br>
+                <span>{{animal.dataNascimento| date:"dd/MM/yyyy"}}</span>
+            </div>
+            <div class="col-sm-2">
+                <span style="font-weight: bold">Sexo</span>
+                <br>
+                <span>{{animal.sexo}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <span style="font-weight: bold">Observação</span>
+                <br>
+                <span>{{animal.observacao}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">      
+            <div class="row">
+                <div class="col-sm-10">
+                    <h5>Medições</h5>
+                </div>
+                <div class="col-sm-2 text-right">
+                    <a ng-click="adicionarMedicao()"><span class="btn glyphicon glyphicon-plus"></span></a>           
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Data da Medição</th>
+                        <th>Peso</th>
+                        <th>Comp Padrão</th>
+                        <th>Comp Cabeça</th>
+                        <th>Alt Padrão</th>
+                        <th>Alt Cabeça</th>
+                        <th>Larg Corpo</th>
+                        <th>Área Olho Lombo</th>
+                        <th>Entre Costelas</th>
+                        <th>Ausência Espinho</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr ng-repeat="medicao in medicoes">
+                        <td>{{medicao.dataMedicao| date:"dd/MM/yyyy"}}</td>
+                        <td>{{medicao.peso}}</td>
+                        <td>{{medicao.comprimentoPadrao}}</td>
+                        <td>{{medicao.compriemntoCabeca}}</td>
+                        <td>{{medicao.alturaPadrao}}</td>
+                        <td>{{medicao.alturaCabeca}}</td>
+                        <td>{{medicao.larguraCorporal}}</td>
+                        <td>{{medicao.areaOlhoLombo}}</td>
+                        <td>{{medicao.espacoEntreCostelas}}</td>
+                        <td>{{medicao.ausenciaEspinha}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

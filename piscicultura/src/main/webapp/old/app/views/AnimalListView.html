@@ -1,0 +1,39 @@
+<div class="container">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">      
+            <div class="row">
+                <div class="col-sm-10">
+                    <h5>Animais</h5>
+                </div>
+                <div class="col-sm-2 text-right">
+                    <a ng-click="pesquisar()"><span class="btn glyphicon glyphicon-search"></span></a>
+                    <a ng-click="adicionar()"><span class="btn glyphicon glyphicon-plus"></span></a>           
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Número do microship</th>
+                        <th>Espécie</th>
+                        <th>Data de nascimento</th>
+                        <th>Sexo</th>
+                        <th>Observação</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr ng-repeat="animal in animais" ng-click="detalhar(animal)">
+                        <td>{{animal.numeroMicroship}}</td>
+                        <td>{{animal.especie}}</td>
+                        <td>{{animal.dataNascimento | date:"dd/MM/yyyy"}}</td>
+                        <td>{{animal.sexo}}</td>
+                        <td>{{animal.observacao}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+</div>

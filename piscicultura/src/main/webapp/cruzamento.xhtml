@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./template.xhtml">
+
+    <ui:define name="content">
+        <p:spacer height="10"/>
+        <h:form>      
+            <p:panel id="tabela" header="Cruzamento" style="margin-bottom:20px">
+                <p:spacer height="5"/>
+                <p:dataTable var="cruzamento" value="#{cruzamentoBean.listCruzamento}"  
+                             paginator="true" rows="10" >
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id" />
+                        </f:facet>
+                        <h:outputText value="#{cruzamento.id}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id do Pai" />
+                        </f:facet>
+                        <h:outputText value="#{cruzamento.idPai}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id da Mãe" />
+                        </f:facet>
+                        <h:outputText value="#{cruzamento.idMae}" />
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="Pesquisar" update="tabela" action="#{cruzamentoBean.find()}"/>
+                <p:commandButton value="Adicionar" update="panel" action="#{cruzamentoBean.newCruzamento()}" onclick="PF('cruzamento-dialog').show();"/>
+            </p:panel>    
+
+            <p:dialog header="Adicionar cruzamento" widgetVar="cruzamento-dialog" modal="true" minWidth="600" width="600">
+
+                <p:panel id="panel" header="Dados do cruzamento" style="margin-bottom:10px;" >                  
+                    <p:panelGrid columns="2" layout="grid">                        
+                        <p:outputLabel for="idPai" value="Id do pai:" />
+                        <p:inputText id="idPai" type="number" value="#{cruzamentoBean.cruzamento.idPai}" />
+
+                        <p:outputLabel for="idMae" value="Id da mãe:" />
+                        <p:inputText id="idMae" type="number" value="#{cruzamentoBean.cruzamento.idMae}" />
+                    </p:panelGrid>
+                </p:panel>
+
+                <p:commandButton value="Salvar" update="tabela" actionListener="#{cruzamentoBean.save()}" onsuccess="PF('cruzamento-dialog').hide();"/>
+
+            </p:dialog>   
+        </h:form>
+    </ui:define>
+
+</ui:composition>

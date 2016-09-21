@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./template.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <p:panel id="tabela" header="Medições" style="margin-bottom:20px">
+                <p:spacer height="10"/>
+                <p:panelGrid columns="3" style="border: none">
+                    <p:outputLabel for="animal" value="Número do Microship:" />
+                    <p:autoComplete id="animal" value="#{medicaoBean.animal}" 
+                                    completeMethod="#{medicaoBean.completeAnimal}" var="animal" itemLabel="#{animal.numeroMicroship}" 
+                                    itemValue="#{animal}" converter="animalConverter" forceSelection="true"/>
+                    <p:commandButton value="Pesquisar" update="tabela" action="#{medicaoBean.find()}"/>
+                </p:panelGrid>
+                <p:spacer height="10"/>
+                
+                <p:dataTable var="medicao" value="#{medicaoBean.listMedicao}"  paginator="true" rows="20" >    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Data da medição" />
+                        </f:facet>
+                        <h:outputText value="#{medicao.dataMedicao}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Peso" />
+                        </f:facet>
+                        <h:outputText value="#{medicao.peso}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Comp Padrão" />
+                        </f:facet>
+                        <h:outputText value="#{medicao.comprimentoPadrao}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Comp Cabeça" />
+                        </f:facet>
+                        <h:outputText value="#{medicao.compriemntoCabeca}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Alt Padrão" />
+                        </f:facet>
+                        <h:outputText value="#{medicao.alturaPadrao}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Alt Cabeça" />
+                        </f:facet>
+                        <h:outputText value="#{medicao.alturaCabeca}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Larg Corporal" />
+                        </f:facet>
+                        <h:outputText value="#{medicao.larguraCorporal}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Área Olho Lombo" />
+                        </f:facet>
+                        <h:outputText value="#{medicao.areaOlhoLombo}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Entre Costelas" />
+                        </f:facet>
+                        <h:outputText value="#{medicao.espacoEntreCostelas}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Ausência Espinho" />
+                        </f:facet>
+                        <h:outputText value="#{medicao.ausenciaEspinha}" />
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="Adicionar" update="panel" style="float: right;" 
+                                 action="#{medicaoBean.newAnimal()}" onclick="PF('medicao-dialog').show();"/>
+                <p:spacer height="20"/>
+            </p:panel>    
+
+            <p:dialog header="Adicionar Medição" widgetVar="medicao-dialog" modal="true" width="600">
+                <p:panel id="panel" header="Dados da medição" style="margin-bottom:10px;">
+                    <p:messages id="messages" />
+                    <p:panelGrid columns="2" layout="grid">  
+                        <p:outputLabel for="dataMedicao" value="Data da medição:" />
+                        <p:calendar id="dataMedicao" value="#{medicaoBean.medicao.dataMedicao}" pattern="dd-MM-yyyy"/>
+
+                        <p:outputLabel for="peso" value="Peso:" />
+                        <p:inputText id="peso" value="#{medicaoBean.medicao.peso}" />
+
+                        <p:outputLabel for="comprimentoPadrao" value="Comprimento Padrão:" />
+                        <p:inputText id="comprimentoPadrao" value="#{medicaoBean.medicao.comprimentoPadrao}" />
+
+                        <p:outputLabel for="compriemntoCabeca" value="Comprimento da Cabeça:" />
+                        <p:inputText id="compriemntoCabeca" value="#{medicaoBean.medicao.compriemntoCabeca}" />
+
+                        <p:outputLabel for="alturaPadrao" value="Altura Padrão:" />
+                        <p:inputText id="alturaPadrao" value="#{medicaoBean.medicao.alturaPadrao}" />
+
+                        <p:outputLabel for="alturaCabeca" value="Altura da Cabeça:" />
+                        <p:inputText id="alturaCabeca" value="#{medicaoBean.medicao.alturaCabeca}" />
+
+                        <p:outputLabel for="larguraCorporal" value="Largura Corporal:" />
+                        <p:inputText id="larguraCorporal" value="#{medicaoBean.medicao.larguraCorporal}" />
+
+                        <p:outputLabel for="areaOlhoLombo" value="Área de Olho do Lombo:" />
+                        <p:inputText id="areaOlhoLombo" value="#{medicaoBean.medicao.areaOlhoLombo}" />
+
+                        <p:outputLabel for="espacoEntreCostelas" value="Espaço entre Costelas:" />
+                        <p:inputText id="espacoEntreCostelas" value="#{medicaoBean.medicao.espacoEntreCostelas}" />
+
+                        <p:outputLabel for="espacoEntreCostelas" value="Ausência de Espinha:" />
+                        <p:selectBooleanCheckbox value="#{medicaoBean.medicao.ausenciaEspinha}" />
+
+                    </p:panelGrid>
+                    <p:commandButton value="Salvar" update="tabela" style="float: right;"
+                                     actionListener="#{medicaoBean.save()}" 
+                                     onsuccess="PF('medicao-dialog').hide();"/> 
+                    <p:spacer height="20"/>
+                </p:panel>
+
+            </p:dialog>   
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>

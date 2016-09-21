@@ -1,0 +1,23 @@
+<div class="container">    
+    <form role="form">
+        <div class="panel panel-default">
+            <div class="panel-heading">Adicionar cruzamento</div>
+            <div class="panel-body">
+                
+                <fieldset class="form-group">
+                    <label for="idPai">Id do Pai</label>
+                    <input id="idPai" type="number" class="form-control" 
+                           ng-model="cruzamento.idPai" /> 
+                </fieldset>
+                
+                <fieldset class="form-group">
+                    <label for="idMae">Id da Mãe</label>
+                    <input id="idMae" type="number" class="form-control" 
+                           ng-model="cruzamento.idMae" /> 
+                </fieldset>
+                
+                <button class="btn btn-block btn-primary" ng-click="adicionar()">Salvar</button>
+            </div>
+        </div>
+    </form>
+</div>

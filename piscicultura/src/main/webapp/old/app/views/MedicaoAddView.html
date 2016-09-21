@@ -1,0 +1,94 @@
+<div class="container">
+    <div class="well">
+        <div class="row">
+            <div class="col-sm-2">
+                <span style="font-weight: bold">Microship</span>
+                <br>
+                <span>{{animal.numeroMicroship}}</span>
+            </div>
+            <div class="col-sm-4">
+                <span style="font-weight: bold">Espécie</span>
+                <br>
+                <span>{{animal.especie}}</span>
+            </div>
+            <div class="col-sm-4">
+                <span style="font-weight: bold">Data de Nascimento</span>
+                <br>
+                <span>{{animal.dataNascimento| date:"dd/MM/yyyy"}}</span>
+            </div>
+            <div class="col-sm-2">
+                <span style="font-weight: bold">Sexo</span>
+                <br>
+                <span>{{animal.sexo}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <span style="font-weight: bold">Observação</span>
+                <br>
+                <span>{{animal.observacao}}</span>
+            </div>
+        </div>
+    </div>
+
+    <form role="form">
+        <div class="panel panel-default">
+            <div class="panel-heading">Adicionar medição</div>
+            <div class="panel-body">
+                <fieldset class="form-group">
+                    <label for="dataMedicao">Data da Medição</label>
+                    <input id="dataMedicao" type="date" class="form-control" 
+                           ng-model="medicao.dataMedicao" /> 
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="peso">Peso</label>
+                    <input id="peso" type="text" class="form-control" 
+                           ng-model="medicao.peso" /> 
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="comprimentoPadrao">Comprimento Padrão</label>
+                    <input id="comprimentoPadrao" type="text" class="form-control" 
+                           ng-model="medicao.comprimentoPadrao" /> 
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="comprimentoPadrao">Comprimento da Cabeça</label>
+                    <input id="comprimentoPadrao" type="text" class="form-control" 
+                           ng-model="medicao.compriemntoCabeca" /> 
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="comprimentoPadrao">Altura Padrão</label>
+                    <input id="comprimentoPadrao" type="text" class="form-control" 
+                           ng-model="medicao.alturaPadrao" /> 
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="comprimentoPadrao">Altura da Cabeça</label>
+                    <input id="comprimentoPadrao" type="text" class="form-control" 
+                           ng-model="medicao.alturaCabeca" /> 
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="comprimentoPadrao">Largura Corporal</label>
+                    <input id="comprimentoPadrao" type="text" class="form-control" 
+                           ng-model="medicao.larguraCorporal" /> 
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="comprimentoPadrao">Área de Olho do Lombo</label>
+                    <input id="comprimentoPadrao" type="text" class="form-control" 
+                           ng-model="medicao.areaOlhoLombo" /> 
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="comprimentoPadrao">Espaço entre Costelas</label>
+                    <input id="comprimentoPadrao" type="text" class="form-control" 
+                           ng-model="medicao.espacoEntreCostelas" /> 
+                </fieldset>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="medicao.ausenciaEspinha"> Ausência de Espinha
+                    </label>
+                </div>
+
+                <button class="btn btn-block btn-primary" ng-click="adicionar()">Salvar</button>
+            </div>
+        </div>
+    </form>
+
+</div>

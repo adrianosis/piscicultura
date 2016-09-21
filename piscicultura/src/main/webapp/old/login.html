@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div class="container" style="max-width: 500px">
+            <form method="post" action="j_security_check">
+                <div class="panel panel-default" style="margin-top: 50px">
+                    <div class="panel-heading" ><h3 style="margin: 5px">Autenticação Piscicultura</h3></div>
+                    <div class="panel-body">
+                        <fieldset class="form-group">
+                            <label for="login">Login</label>
+                            <input id="login" type="text" autocomplete="off" class="form-control" name="j_username"/>                    
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label for="senha">Senha</label>
+                            <input id="senha" type="password" class="form-control" name="j_password"/>                    
+                        </fieldset>      
+                        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

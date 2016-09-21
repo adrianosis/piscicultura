@@ -1,0 +1,48 @@
+<div class="container">    
+    <form role="form">
+        <div class="panel panel-default">
+            <div class="panel-heading">Adicionar animal</div>
+            <div class="panel-body">
+                <fieldset class="form-group">
+                    <label for="numeroMicroship">Número do microship</label>
+                    <input id="numeroMicroship" type="text" class="form-control" 
+                           ng-model="animal.numeroMicroship" /> 
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="especie">Espécie</label>
+                    <input id="especie" type="text" class="form-control" 
+                           ng-model="animal.especie" />                    
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="dataNascimento">Data de nascimento</label>
+                    <input id="dataNascimento" type="date" class="form-control" 
+                           ng-model="animal.dataNascimento" />                    
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="sexo">Sexo</label>
+                    <select id="sexo" class="form-control" 
+                            ng-model="animal.sexo">   
+                        <option ng-repeat="sexo in sexos" value="{{sexo.id}}">{{sexo.nome}}</option>
+                    </select>                                       
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="observacao">Observação</label>
+                    <textarea id="observacao" class="form-control" rows="5" 
+                              ng-model="animal.observacao"></textarea>      
+                </fieldset>
+                
+                <fieldset class="form-group">
+                    <label for="cruzamento">Cruzamento Id</label>
+                    <input id="cruzamento" type="number" class="form-control"
+                              ng-model="animal.cruzamento.id" />      
+                </fieldset>
+                
+                <button class="btn btn-block btn-primary" ng-click="adicionar()">Salvar</button>
+            </div>
+        </div>
+    </form>
+</div>

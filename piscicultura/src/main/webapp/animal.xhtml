@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="./template.xhtml">
+
+    <ui:define name="content">
+        <p:spacer height="10"/>
+        <h:form>            
+            <p:panel id="tabela" header="Animais" style="margin-bottom:20px">
+                <p:spacer height="5"/>
+                <p:dataTable var="animal" value="#{animalBean.listAnimais}"  paginator="true" rows="20" >
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Microship" />
+                        </f:facet>
+                        <h:outputText value="#{animal.numeroMicroship}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Espécie" />
+                        </f:facet>
+                        <h:outputText value="#{animal.especie}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Data de nascimento" />
+                        </f:facet>
+                        <h:outputText value="#{animal.dataNascimento}" >
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Sexo" />
+                        </f:facet>
+                        <h:outputText value="#{animal.sexo}" />
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value="Pesquisar" update="tabela" action="#{animalBean.find()}"/>
+                <p:commandButton value="Adicionar" update="panel" action="#{animalBean.newAnimal()}" onclick="PF('animal-dialog').show();"/>
+            </p:panel>    
+
+            <p:dialog header="Adicionar animal" widgetVar="animal-dialog" modal="true">
+
+                <p:panel id="panel" header="Dados do animal" style="margin-bottom:10px;">
+                    <p:messages id="messages" />
+                    <p:panelGrid columns="2" layout="grid">                        
+                        <p:outputLabel for="numeroMicroship" value="Número do microship:" />
+                        <p:inputText id="numeroMicroship" value="#{animalBean.animal.numeroMicroship}" />
+
+                        <p:outputLabel for="especie" value="Espécie:" />
+                        <p:inputText id="especie" value="#{animalBean.animal.especie}" />
+
+                        <p:outputLabel for="dataNascimento" value="Data de nascimento:" />
+                        <p:calendar id="dataNascimento" value="#{animalBean.animal.dataNascimento}" pattern="dd-MM-yyyy"/>
+
+                        <p:outputLabel for="sexo" value="Sexo:" />
+                        <p:selectOneMenu id="sexo" value="#{animalBean.animal.sexo}">
+                            <f:selectItem itemLabel="Selecione uma opção" itemValue="" />
+                            <f:selectItem itemLabel="Masculino" itemValue="M" />
+                            <f:selectItem itemLabel="Feminino" itemValue="F" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="observacao" value="Observação:" />
+                        <p:inputTextarea id="observacao" value="#{animalBean.animal.observacao}" />
+
+                        <p:outputLabel for="cruzamento" value="Cruzamento Id:" />
+                        <p:autoComplete id="cruzamento" value="#{animalBean.animal.cruzamento}" 
+                                        completeMethod="#{animalBean.completeCruzamanto}" var="cruzamento" itemLabel="#{cruzamento.id}" 
+                                        itemValue="#{cruzamento}" converter="cruzamentoConverter" forceSelection="true"/>
+
+                    </p:panelGrid>
+                </p:panel>
+                <p:commandButton value="Salvar" update="tabela" actionListener="#{animalBean.save()}" onsuccess="PF('animal-dialog').hide();"/>              
+
+            </p:dialog>   
+        </h:form>
+    </ui:define>
+</ui:composition>
